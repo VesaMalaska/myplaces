@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# My Places React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a React-based single page app (CREATE-REACT-APP) which allows the user to select spots on a map and add & edit the following information for the selected map location:
 
-## Available Scripts
+- title
+- description
+- information whether the selected location is open or closed
 
-In the project directory, you can run:
+The app uses [**Google Maps API**](https://www.npmjs.com/package/@react-google-maps/api) for the map implementation and it also uses the [**Google Maps Geocoding API**](https://www.npmjs.com/package/react-geocode) to resolve address information for the selected map location, assuming that such data is available. If the user chooses a location that doesn't have any address information available based on the location coordinates (e.g. a spot in the water), the app won't allow the user to create a marker for that location.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The saved locations are shown in the map view as markers and the app also has a list view, where the user can view the details of all saved places. The user can also edit the data of the saved places and remove any of the saved places in the list view.
+
+The data is persisted in the browser's local storage.
+
+All React components in the app are custom made and the styling of these components is made with plain CSS.
+
+The color theme for the app is created using the Coolors color theme generator. You can check the theme here: [**https://coolors.co/0d1321-7b6d8d-c9e4ca-87bba2-40531b**](https://coolors.co/0d1321-7b6d8d-c9e4ca-87bba2-40531b)
+
+
+## Running the project
+
+You need to have the **Node.js** runtime in order to run the app in development mode on your local machine. Just run the the following script to launch the server:
+
+```npm start```
+
+Open [**http://localhost:3000**](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
 ### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+The app is deployed to **Heroku** from the main branch. The deployment will be done automatically whenever the Git repository is updated. You can find the app here: [**https://myplaces2022.herokuapp.com/**](https://myplaces2022.herokuapp.com/)
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

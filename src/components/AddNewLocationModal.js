@@ -55,6 +55,7 @@ const AddNewLocationModal = (props) => {
     const resetAddNewModal = () => {
         setAddNewLocationModalOpen(false);
         setPlaceTitle('');
+        setPlaceDescription({descriptionValue: ''});
         setPlaceOpen(false);
         resetSelectedLocation();
     };

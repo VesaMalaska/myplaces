@@ -5,7 +5,8 @@ export const mapContainerStyle = {
 
 export const savedLocationMapContainerStyle = {
   width: '100%',
-  height: window.innerHeight / 3,
+  height: '100%',
+//   height: window.innerHeight / 3,
 };
 
 export const mapInitialZoom = 13;

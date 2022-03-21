@@ -338,6 +338,7 @@ p.modal-text {
     border-radius: 4px;
     padding: 8px 24px;
     margin: 24px 0;
+    overflow: hidden;
 }
 
 .saved-location-item-content-flex-container {

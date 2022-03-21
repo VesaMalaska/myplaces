@@ -4,7 +4,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import AddNewLocationModal from './AddNewLocationModal';
 import Geocode from "react-geocode";
 
-Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
+Geocode.setApiKey('AIzaSyAoH9-myuIXGNys5y5f3fFPvtYG_FL0WFo'); {/* process.env.REACT_APP_GOOGLE_API_KEY */}
 Geocode.setRegion("fi");
 Geocode.setLocationType("ROOFTOP");
 

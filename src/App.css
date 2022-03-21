@@ -409,6 +409,12 @@ p.modal-text {
     .saved-location-map, .saved-location-item-content-wrapper {
         width: 50%;
     }
+    .saved-location-item-content-wrapper-active {
+        padding-left: 20px;
+    }
+    .saved-location-item-wrapper {
+        padding: 12px 32px;
+    }
 }
 @media (min-width: 992px) {
     .container {

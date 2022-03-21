@@ -134,14 +134,14 @@ header nav .active {
 }
 
 .modal-container > * {
-    padding: 12px 0;
+    padding: 6px 0;
 }
 
 .modal-container h3 {
     color: var(--darkTextColor);
     font-size: 1.3rem;
     font-weight: 600;
-    line-height: 2.4;
+    line-height: 1.8;
     text-align: center;
 }
 
@@ -183,6 +183,10 @@ header nav .active {
     border: none;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
+}
+
+.drop-down-button:hover {
+    color: var(--primaryColorHover);
 }
 
 .drop-down-button-rotated {

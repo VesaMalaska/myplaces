@@ -102,7 +102,7 @@ const LocationInfoEditModal = (props) => {
                 </div>
                 <div className="modal-block-wrapper">
                     <h4 className="modal-label">Description:</h4>
-                    <textarea id="description" name="description" rows="5" cols="32" value={placeDescription.descriptionValue} onChange={(e) => {updatePlaceDescriptionHandler(e)}}></textarea>
+                    <textarea id="description" name="description" rows="3" cols="32" value={placeDescription.descriptionValue} onChange={(e) => {updatePlaceDescriptionHandler(e)}}></textarea>
                 </div>
                 <div className={`modal-block-wrapper `}>
                     <div className="title-with-drop-down-arrow-wrapper">

@@ -337,6 +337,7 @@ p.modal-text {
     box-shadow: 0 3px 12px -3px #ccc;
     border-radius: 4px;
     padding: 8px 24px;
+    margin: 24px 0;
 }
 
 .saved-location-item-content-flex-container {

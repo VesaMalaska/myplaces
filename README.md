@@ -30,7 +30,7 @@ The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
 
-### Deployment
+## Deployment
 
 The app is deployed to **Heroku** from the main branch. The deployment will be done automatically whenever the Git repository is updated. You can find the app here: [**https://myplaces2022.herokuapp.com/**](https://myplaces2022.herokuapp.com/)
 

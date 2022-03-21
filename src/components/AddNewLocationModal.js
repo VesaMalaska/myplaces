@@ -35,9 +35,10 @@ const AddNewLocationModal = (props) => {
     };
 
     const addNewLocationToSavedLocations = () => {
+        const newLocationTitle = placeTitle !== '' ? placeTitle : 'MyPlace_' + street;
         const newLocationObject = {
             id: uuidv4(),
-            title: placeTitle,
+            title: newLocationTitle,
             address: {
                 street,
                 postalcode,

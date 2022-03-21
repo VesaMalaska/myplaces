@@ -11,7 +11,7 @@ const Header = ({ resetSelectedLocation, setAddNewLocationModalOpen }) => {
     return (
         <header>
             <div className="flex-container">
-                <h1>Map Places</h1>
+                <h1>My Places</h1>
                 <nav className='flex-container '>
                     <NavLink to="/mapview" className="nav-link">
                         <FontAwesomeIcon icon={faMapLocationDot} />

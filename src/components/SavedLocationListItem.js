@@ -15,8 +15,8 @@ const SavedLocationListItem = ({ location }) => {
                     <FontAwesomeIcon icon={faAngleDown} />
                 </button>
             </div>
-            <div>
-                <div className="saved-location-item-content-wrapper">
+            <div className="saved-location-item-content-flex-container">
+                <div className={`saved-location-item-content-wrapper ${showContent ? 'saved-location-item-content-wrapper-active' : ''}`}>
                     <div className="saved-location-item-block-wrapper">
                         <h4 className="modal-label">Address:</h4>
                         <p className="modal-text">
@@ -34,7 +34,7 @@ const SavedLocationListItem = ({ location }) => {
                         <p className="modal-text">This place is {location.isOpen ? 'open' : 'closed'}</p>
                     </div>
                 </div>
-                <div className="saved-location-map">
+                <div className={`saved-location-map ${showContent ? 'saved-location-map-active' : ''}`}>
                     <GoogleMapsSavedLocation savedLocationCoordinates={location.coordinates} />
                 </div>
             </div>

@@ -38,7 +38,6 @@ export const GoogleMapsSavedLocation = ({ savedLocationCoordinates }) => {
   };
 
   return (
-    <>
       <LoadScript
         googleMapsApiKey='AIzaSyAoH9-myuIXGNys5y5f3fFPvtYG_FL0WFo'
       > 
@@ -47,12 +46,11 @@ export const GoogleMapsSavedLocation = ({ savedLocationCoordinates }) => {
         <GoogleMap
           mapContainerStyle={savedLocationMapContainerStyle}
           center={savedLocationCoordinates}
-          zoom={mapInitialZoom - 2}
+          zoom={mapInitialZoom + 2}
         >
           <SavedLocationMarker />
         </GoogleMap>
       </LoadScript>
-    </>
   );
 };
 
@@ -102,7 +100,7 @@ export const GoogleMaps = (props) => {
         googleMapsApiKey='AIzaSyAoH9-myuIXGNys5y5f3fFPvtYG_FL0WFo'
       >
       {/*googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}*/}
-      
+
         <GoogleMap
           onClick={async e => {
             let addressComponents = await Geocode.fromLatLng(e.latLng.lat(), e.latLng.lng());

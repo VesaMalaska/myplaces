@@ -3,6 +3,7 @@ import './App.css';
 import MapView from './components/MapView';
 import Header from './components/Header';
 import ListView from './components/ListView';
+import LocationInfoEditModal from './components/LocationInfoEditModal';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 function App() {
@@ -22,10 +23,11 @@ function App() {
       lat: null,
       lng: null,
     },
+    description: '',
     isOpen: false,
   });
   const [savedLocations, setSavedLocations] = useState([]);
-  const [addNewLocationModalOpen, setAddNewLocationModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     getSavedLocationsFromLocalStorage();
@@ -66,7 +68,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Header resetSelectedLocation={resetSelectedLocation} setAddNewLocationModalOpen={setAddNewLocationModalOpen} />
+        <Header resetSelectedLocation={resetSelectedLocation} setModalOpen={setModalOpen} />
         <Routes>
           <Route path='/mapview' element={
             <MapView  
@@ -74,20 +76,28 @@ function App() {
               setSavedLocations={setSavedLocations}
               selectedLocation={selectedLocation}
               setSelectedLocation={setSelectedLocation}
-              setAddNewLocationModalOpen={setAddNewLocationModalOpen}
-              addNewLocationModalOpen={addNewLocationModalOpen}
+              setModalOpen={setModalOpen}
               resetSelectedLocation={resetSelectedLocation}
             />
           } /> 
           <Route path='/listview' element={
-              <ListView  
-                savedLocations={savedLocations}
-                setSavedLocations={setSavedLocations}              
-              />
-            } 
-          />
+            <ListView  
+              savedLocations={savedLocations}
+              setSavedLocations={setSavedLocations}
+              setSelectedLocation={setSelectedLocation} 
+              setModalOpen={setModalOpen}          
+            />
+          } />
           <Route path='*' element={<Navigate to='/mapview' />} />
         </Routes>
+        <LocationInfoEditModal 
+          modalOpen={modalOpen}
+          setModalOpen={setModalOpen}
+          selectedLocation={selectedLocation}
+          savedLocations={savedLocations}
+          setSavedLocations={setSavedLocations}
+          resetSelectedLocation={resetSelectedLocation}
+        />
       </div>
     </Router>
   );

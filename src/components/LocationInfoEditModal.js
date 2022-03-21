@@ -1,17 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 
-const AddNewLocationModal = (props) => {
-
+const LocationInfoEditModal = (props) => {
     const { 
-        addNewLocationModalOpen, 
-        setAddNewLocationModalOpen, 
+        modalOpen, 
+        setModalOpen, 
         selectedLocation, 
         savedLocations, 
         setSavedLocations, 
-        resetSelectedLocation 
+        resetSelectedLocation,
     } = props;
 
     const { street, postalcode, city, country } = selectedLocation.address;
@@ -21,6 +20,12 @@ const AddNewLocationModal = (props) => {
     const [placeDescription, setPlaceDescription] = useState({descriptionValue: ''});
     const [placeOpen, setPlaceOpen] = useState(false);
     const [showCoordinates, setShowCoordinates] = useState(false);
+
+    useEffect(() => {
+        setPlaceTitle(selectedLocation.title);
+        setPlaceDescription({descriptionValue: selectedLocation.description});
+        setPlaceOpen(selectedLocation.isOpen);
+    }, [selectedLocation]);
 
     const updatePlaceTitleHandler = (e) => {
         setPlaceTitle(e.target.value);
@@ -36,8 +41,10 @@ const AddNewLocationModal = (props) => {
 
     const addNewLocationToSavedLocations = () => {
         const newLocationTitle = placeTitle !== '' ? placeTitle : 'MyPlace@' + street;
+        const locationId = selectedLocation.id === null ? uuidv4() : selectedLocation.id;
+
         const newLocationObject = {
-            id: uuidv4(),
+            id: locationId,
             title: newLocationTitle,
             address: {
                 street,
@@ -52,12 +59,19 @@ const AddNewLocationModal = (props) => {
             description: placeDescription.descriptionValue,
             isOpen: placeOpen,
         };
-        setSavedLocations([...savedLocations, newLocationObject]);
+
+        let filteredSavedLocations = savedLocations;
+        if(selectedLocation.id !== null) {
+            filteredSavedLocations = savedLocations.filter(savedLocation => {
+                return savedLocation.id !== selectedLocation.id;
+            });
+        }
+        setSavedLocations([...filteredSavedLocations, newLocationObject]);
         resetAddNewModal();
     };
 
     const resetAddNewModal = () => {
-        setAddNewLocationModalOpen(false);
+        setModalOpen(false);
         setPlaceTitle('');
         setPlaceDescription({descriptionValue: ''});
         setPlaceOpen(false);
@@ -65,7 +79,7 @@ const AddNewLocationModal = (props) => {
     };
 
     return (
-        <div className={`modal-overlay ${!addNewLocationModalOpen ? 'hidden' : ''}`} onClick={() => {resetAddNewModal()}}>
+        <div className={`modal-overlay ${!modalOpen ? 'hidden' : ''}`} onClick={() => {resetAddNewModal()}}>
             <div className="modal-container" onClick={(event) => {event.stopPropagation()}}>
                     <h3>My Place <span className="app-icon"><FontAwesomeIcon icon={faLocationDot} /></span></h3>
                 <div className="modal-block-wrapper">
@@ -112,4 +126,4 @@ const AddNewLocationModal = (props) => {
     );
 };
 
-export default AddNewLocationModal;
+export default LocationInfoEditModal;

@@ -13,7 +13,7 @@ const Header = ({ resetSelectedLocation, setAddNewLocationModalOpen }) => {
             <div className="flex-container">
                 <h1>My Places <span className="app-icon"><FontAwesomeIcon icon={faLocationDot} /></span></h1>
                 <nav className='flex-container '>
-                    <NavLink to="/mapview" className="nav-link">
+                    <NavLink to="/mapview" className="nav-link" onClick={() => {cancelAddingNewLocation()}}>
                         <FontAwesomeIcon icon={faMapLocationDot} />
                     </NavLink>
                     <NavLink to="/listview" className="nav-link" onClick={() => {cancelAddingNewLocation()}}>

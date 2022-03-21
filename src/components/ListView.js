@@ -1,6 +1,6 @@
 import SavedLocationListItem from './SavedLocationListItem';
 
-const ListView = ({ savedLocations, setSavedLocations }) => {    
+const ListView = ({ savedLocations, setSavedLocations, setSelectedLocation, setModalOpen, setModalState }) => {    
     return (
         <>
             <div className="container">
@@ -12,6 +12,9 @@ const ListView = ({ savedLocations, setSavedLocations }) => {
                         key={location.id}
                         savedLocations={savedLocations}
                         setSavedLocations={setSavedLocations}
+                        setSelectedLocation={setSelectedLocation} 
+                        setModalOpen={setModalOpen}
+                        setModalState={setModalState} 
                      />
                 ))}
             </div>

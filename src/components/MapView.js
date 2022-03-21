@@ -1,11 +1,11 @@
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import AddNewLocationModal from './AddNewLocationModal';
 import Geocode from "react-geocode";
 import { mapContainerStyle, mapInitialCenterCoordinates, mapInitialZoom } from '../utils/mapUtils';
 
-Geocode.setApiKey('AIzaSyAoH9-myuIXGNys5y5f3fFPvtYG_FL0WFo'); {/* process.env.REACT_APP_GOOGLE_API_KEY */}
+Geocode.setApiKey('AIzaSyAoH9-myuIXGNys5y5f3fFPvtYG_FL0WFo'); 
+/* process.env.REACT_APP_GOOGLE_API_KEY */
 Geocode.setRegion("fi");
 Geocode.setLocationType("ROOFTOP");
 
@@ -15,14 +15,11 @@ const MapView = (props) => {
     selectedLocation,
     setSelectedLocation, 
     savedLocations,
-    setSavedLocations,
-    setAddNewLocationModalOpen,
-    addNewLocationModalOpen,
-    resetSelectedLocation
+    setModalOpen
   } = props;
 
   const openLocationInfoModal = () => {
-    setAddNewLocationModalOpen(true);
+    setModalOpen(true);
   };
 
   const SavedLocationsMarkers = () => {
@@ -49,6 +46,38 @@ const MapView = (props) => {
     } else return '';
   };
 
+  const initMapLocationToState = async (latLng) => {
+    try {              
+      if(latLng === null) {
+        // TODO: Route to error 
+        console.log('Initializing map location failed. No coordinates available.');
+        return;
+      }
+      let geocodingApiResponse = await Geocode.fromLatLng(latLng.lat(), latLng.lng());
+      const { address_components: addressComponents } = geocodingApiResponse.results[0];
+      setSelectedLocation(
+        {
+          id: null,
+          title: '',
+          address: {
+            street: addressComponents[1].long_name + ' ' + addressComponents[0].long_name,
+            postalcode: addressComponents[4].long_name,
+            city: addressComponents[2].long_name,
+            country: addressComponents[3].long_name,
+          },
+          coordinates: {
+            lat: latLng.lat(),
+            lng: latLng.lng(),
+          },
+          description: '',
+          isOpen: false,
+        }
+      );  
+    } catch (error) {
+      console.log(`Prosessing Google Geocoding Api response failed. ${error}`);
+    }
+  };
+
   return (
     <>
       <LoadScript
@@ -57,23 +86,9 @@ const MapView = (props) => {
       {/*googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}*/}
 
         <GoogleMap
-          onClick={async e => {
-            let addressComponents = await Geocode.fromLatLng(e.latLng.lat(), e.latLng.lng());
-            addressComponents = addressComponents.results[0].address_components;
-            setSelectedLocation(
-              {
-                address: {
-                  street: addressComponents[1].long_name + ' ' + addressComponents[0].long_name,
-                  postalcode: addressComponents[4].long_name,
-                  city: addressComponents[2].long_name,
-                  country: addressComponents[3].long_name,
-                },
-                coordinates: {
-                  lat: e.latLng.lat(),
-                  lng: e.latLng.lng(),
-                }
-              }
-            );
+          onClick={e => {
+            const { latLng } = e;
+            initMapLocationToState(latLng);
           }}
           mapContainerStyle={mapContainerStyle}
           center={mapInitialCenterCoordinates}
@@ -86,15 +101,6 @@ const MapView = (props) => {
           </button>
         </GoogleMap>
       </LoadScript>
-      
-      <AddNewLocationModal 
-        addNewLocationModalOpen={addNewLocationModalOpen}
-        setAddNewLocationModalOpen={setAddNewLocationModalOpen}
-        selectedLocation={selectedLocation}
-        savedLocations={savedLocations}
-        setSavedLocations={setSavedLocations}
-        resetSelectedLocation={resetSelectedLocation}
-      />
     </>
   );
 }

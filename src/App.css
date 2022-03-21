@@ -312,7 +312,8 @@ p.modal-text {
 
 .place-open-indicator {
     color: #53DD6C;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
+    padding: 2px;
 }
 
 .place-closed {

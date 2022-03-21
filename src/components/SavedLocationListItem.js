@@ -3,7 +3,7 @@ import SavedLocationMap from './SavedLocationMap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faCircle, faTrashCan, faPen } from '@fortawesome/free-solid-svg-icons';
 
-const SavedLocationListItem = ({ location, savedLocations, setSavedLocations }) => {
+const SavedLocationListItem = ({ location, savedLocations, setSavedLocations, setSelectedLocation, setModalOpen }) => {
 
     const [showContent, setShowContent] = useState(false);
 
@@ -14,12 +14,17 @@ const SavedLocationListItem = ({ location, savedLocations, setSavedLocations }) 
         window.location.reload(false);
     };
 
+    const openLocationInfoModalForEditing = () => {
+        setSelectedLocation(location);
+        setModalOpen(true);
+    };
+
     return(
         <div id={location.id} className="saved-location-item-wrapper">
             <div className="title-with-drop-down-arrow-wrapper">
                 <h3 className="modal-label">{location.title}</h3>
                 <div className="saved-location-item-button-group">
-                    <button className={showContent ? '' : 'hidden'}>
+                    <button className={showContent ? '' : 'hidden'} onClick={() => {openLocationInfoModalForEditing()}}>
                         <FontAwesomeIcon icon={faPen} />
                     </button>
                     <button className={showContent ? '' : 'hidden'} onClick={() => {deleteSavedLocationHandler()}}>

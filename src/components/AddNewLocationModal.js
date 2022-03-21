@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 
 const AddNewLocationModal = (props) => {
 
@@ -13,6 +13,9 @@ const AddNewLocationModal = (props) => {
         setSavedLocations, 
         resetSelectedLocation 
     } = props;
+
+    const { street, postalcode, city, country } = selectedLocation.address;
+    const { lat, lng } = selectedLocation.coordinates;
 
     const [placeTitle, setPlaceTitle] = useState('');
     const [placeDescription, setPlaceDescription] = useState({descriptionValue: ''});
@@ -36,14 +39,14 @@ const AddNewLocationModal = (props) => {
             id: uuidv4(),
             title: placeTitle,
             address: {
-                street: selectedLocation.address.street,
-                postalcode: selectedLocation.address.postalcode,
-                city: selectedLocation.address.city,
-                country: selectedLocation.address.country,
+                street,
+                postalcode,
+                city,
+                country,
             },
             coordinates: {
-                lat: selectedLocation.coordinates.lat,
-                lng: selectedLocation.coordinates.lng,
+                lat,
+                lng,
             },
             description: placeDescription.descriptionValue,
             isOpen: placeOpen,
@@ -61,9 +64,9 @@ const AddNewLocationModal = (props) => {
     };
 
     return (
-        <div className={`modal-overlay ${!addNewLocationModalOpen ? 'hidden' : ''}`}>
-            <div className="modal-container">
-                <h3>Add new place</h3>
+        <div className={`modal-overlay ${!addNewLocationModalOpen ? 'hidden' : ''}`} onClick={() => {resetAddNewModal()}}>
+            <div className="modal-container" onClick={(event) => {event.stopPropagation()}}>
+                    <h3>My Place <span className="app-icon"><FontAwesomeIcon icon={faLocationDot} /></span></h3>
                 <div className="modal-block-wrapper">
                     <h4 className="modal-label">Title:</h4>
                     <input type="text" id="title" name="title" placeholder="Name this place" value={placeTitle} onChange={(e) => {updatePlaceTitleHandler(e)}} />
@@ -71,8 +74,8 @@ const AddNewLocationModal = (props) => {
                 <div className="modal-block-wrapper">
                     <h4 className="modal-label">Address:</h4>
                     <p className="modal-text">
-                        {selectedLocation.address.street}<br />
-                        {selectedLocation.address.postalcode} {selectedLocation.address.city}
+                        {street}<br />
+                        {postalcode} {city}
                     </p>
                 </div>
                 <div className="modal-block-wrapper">
@@ -94,13 +97,13 @@ const AddNewLocationModal = (props) => {
                         </button>
                     </div>
                     <div className={`modal-extra-info ${showCoordinates ? 'modal-extra-info-full-height' : ''}`}>
-                        Latitude: {selectedLocation.coordinates.lat}<br />
-                        Longitude: {selectedLocation.coordinates.lng}
+                        Latitude: {lat}<br />
+                        Longitude: {lng}
                     </div>
                 </div>
                 <div className="modal-buttons-wrapper">
+                    <button className="modal-add-button" onClick={() => {addNewLocationToSavedLocations()}}>Save</button>
                     <button className="modal-cancel-button" onClick={() => {cancelAddNewLocationHandler()}}>Cancel</button>
-                    <button className="modal-add-button" onClick={() => {addNewLocationToSavedLocations()}}>Add place</button>
                 </div>
             </div>
             <div className="modal-container-hidden-padding"></div>

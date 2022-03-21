@@ -1,3 +1,12 @@
+:root {
+    --primaryColor: #FE654F;
+    --primaryColorHover: #db543f;
+    --secondaryColor: #2196f3;
+    --secondaryColorHover: #1f87db;
+    --lightTextColor: #fefeff;
+
+  }
+
 html {
     box-sizing: border-box;
     font-size: 16px;
@@ -45,20 +54,20 @@ body {
 
 header {
     width: 100vw;
-    background-color: #2196f3;
+    background-color: var(--secondaryColor);
     height: 64px;
     padding: 0 24px;
 }
 
 header h1 {
-    color: #fefeff;
+    color: var(--lightTextColor);
     font-size: 1.3rem;
     line-height: 22px;
     font-weight: 600;
 }
 
 header nav .nav-link {
-    color: #fefeff;
+    color: var(--lightTextColor);
     font-size: 1.2rem;
     border-radius: 50%;
     display: flex;
@@ -69,11 +78,11 @@ header nav .nav-link {
 }
 
 header nav .nav-link:hover {
-    background-color: #1f87db;
+    background-color: var(--secondaryColorHover);
 }
 
 header nav .active {
-    background-color: #1f87db;
+    background-color: var(--secondaryColorHover);
 }
 
 .add-new-location-button {
@@ -82,15 +91,19 @@ header nav .active {
     right: 12px;
     width: 62px;
     height: 62px;
-    background-color: #2196f3;
+    background-color: var(--primaryColor);
     border-radius: 50%;
     border: 0;
     font-size: 34px;
     line-height: 62px;
     text-align: center;
-    color: #fefeff;
+    color: var(--lightTextColor);
     box-shadow: 2px 2px 2px -1px #5f5f5f44;
     cursor: pointer;
+}
+
+.add-new-location-button:hover {
+    background-color: var(--primaryColorHover);
 }
 
 .modal-overlay {
@@ -125,11 +138,16 @@ header nav .active {
 }
 
 .modal-container h3 {
-    color: #333039;
+    color: #170312;
     font-size: 1.3rem;
-    font-weight: 400;
-    line-height: 2;
+    font-weight: 600;
+    line-height: 2.4;
     text-align: center;
+}
+
+.app-icon {
+    color: var(--primaryColor);
+    font-size: 1.8rem;
 }
 
 .modal-extra-info {
@@ -172,7 +190,7 @@ header nav .active {
 }
 
 .modal-container input, .modal-container textarea {
-    background-color: #fefeff;
+    background-color: var(--lightTextColor);
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 8px 12px;
@@ -184,7 +202,7 @@ header nav .active {
 
 .modal-container input:focus, .modal-container textarea:focus {
     outline: none !important;
-    border: 1px solid #2196f3;
+    border: 1px solid var(--secondaryColor);
 }
 
 .modal-label {
@@ -206,28 +224,29 @@ p.modal-text {
 
 .modal-buttons-wrapper button {
     padding: 12px 24px;
-    color: #fefeff;
+    color: var(--lightTextColor);
     cursor: pointer;
     border-radius: 4px;
     border: none;
     box-shadow: 2px 2px 2px -1px #5f5f5f44;
     font-size: 0.9rem;
+    min-width: 100px;
 }
 
 .modal-cancel-button {
-    background-color: #FE654F;
+    background-color: #aaa;
 }
 
 .modal-cancel-button:hover {
-    background-color: #db543f;
+    background-color: #a0a0a0;
 }
 
 .modal-add-button {
-    background-color: #2196f3;
+    background-color: var(--primaryColor);
 }
 
 .modal-add-button:hover {
-    background-color: #1f87db;
+    background-color: var(--primaryColorHover);
 }
 
 .modal-container-hidden-padding {
@@ -274,11 +293,11 @@ p.modal-text {
 }
   
 .onOffSwitch input:checked + .onOffSwitchSlider {
-    background-color: #2196f3;
+    background-color: var(--primaryColor);
 }
   
 .onOffSwitch input:focus + .onOffSwitchSlider {
-    box-shadow: 0 0 1px #2196f3;
+    box-shadow: 0 0 1px var(--primaryColor);
 }
   
 .onOffSwitch input:checked + .onOffSwitchSlider:before {

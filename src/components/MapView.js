@@ -85,7 +85,7 @@ export const GoogleMaps = (props) => {
   };
 
   const SelectedLocationMarker = () => {
-    if(selectedLocation.coordinates !== null) {
+    if(selectedLocation.coordinates.lat !== null) {
       return (
         <Marker 
           position={selectedLocation.coordinates}

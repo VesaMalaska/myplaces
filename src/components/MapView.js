@@ -3,58 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import AddNewLocationModal from './AddNewLocationModal';
 import Geocode from "react-geocode";
+import { mapContainerStyle, mapInitialCenterCoordinates, mapInitialZoom } from '../utils/mapUtils';
 
 Geocode.setApiKey('AIzaSyAoH9-myuIXGNys5y5f3fFPvtYG_FL0WFo'); {/* process.env.REACT_APP_GOOGLE_API_KEY */}
 Geocode.setRegion("fi");
 Geocode.setLocationType("ROOFTOP");
 
-const mapContainerStyle = {
-  width: '100%',
-  height: window.innerHeight - 64,
-};
-
-const savedLocationMapContainerStyle = {
-  width: '100%',
-  height: window.innerHeight / 3,
-};
-
-const mapInitialZoom = 13;
-
-const mapInitialCenterCoordinates = {
-  lat: 60.192059,
-  lng: 24.945831
-};  
-
-export const GoogleMapsSavedLocation = ({ savedLocationCoordinates }) => {
-
-  const SavedLocationMarker = () => {
-    if(savedLocationCoordinates.lat !== null) {
-      return (
-        <Marker 
-          position={savedLocationCoordinates}
-        />
-      );
-    } else return '';
-  };
-
-  return (
-      <LoadScript
-        googleMapsApiKey='AIzaSyAoH9-myuIXGNys5y5f3fFPvtYG_FL0WFo'
-      > 
-      {/*googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}*/}
-
-        <GoogleMap
-          mapContainerStyle={savedLocationMapContainerStyle}
-          center={savedLocationCoordinates}
-          zoom={mapInitialZoom + 2}
-        >
-          <SavedLocationMarker />
-        </GoogleMap>
-      </LoadScript>
-  );
-};
-
-export const GoogleMaps = (props) => {
+const MapView = (props) => {
 
   const {
     selectedLocation,
@@ -144,3 +99,4 @@ export const GoogleMaps = (props) => {
   );
 }
 
+export default MapView;

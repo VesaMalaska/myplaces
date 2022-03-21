@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import { GoogleMaps } from './components/MapView';
+import MapView from './components/MapView';
 import Header from './components/Header';
 import ListView from './components/ListView';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
@@ -69,7 +69,7 @@ function App() {
         <Header resetSelectedLocation={resetSelectedLocation} setAddNewLocationModalOpen={setAddNewLocationModalOpen} />
         <Routes>
           <Route path='/mapview' element={
-            <GoogleMaps  
+            <MapView  
               savedLocations={savedLocations}
               setSavedLocations={setSavedLocations}
               selectedLocation={selectedLocation}

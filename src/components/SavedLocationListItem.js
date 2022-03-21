@@ -1,19 +1,34 @@
 import { useState } from 'react';
-import { GoogleMapsSavedLocation } from './MapView';
+import SavedLocationMap from './SavedLocationMap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown, faCircle } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown, faCircle, faTrashCan, faPen } from '@fortawesome/free-solid-svg-icons';
 
-const SavedLocationListItem = ({ location }) => {
+const SavedLocationListItem = ({ location, savedLocations, setSavedLocations }) => {
 
     const [showContent, setShowContent] = useState(false);
 
+    const deleteSavedLocationHandler = () => {
+        setSavedLocations(savedLocations.filter(savedLocation => {
+            return savedLocation.id !== location.id;
+        }));
+        window.location.reload(false);
+    };
+
     return(
-        <div className="saved-location-item-wrapper">
+        <div id={location.id} className="saved-location-item-wrapper">
             <div className="title-with-drop-down-arrow-wrapper">
                 <h3 className="modal-label">{location.title}</h3>
-                <button className={`drop-down-button ${showContent ? 'drop-down-button-rotated' : ''}`} onClick={() => {setShowContent(!showContent)}}>
-                    <FontAwesomeIcon icon={faAngleDown} />
-                </button>
+                <div className="saved-location-item-button-group">
+                    <button className={showContent ? '' : 'hidden'}>
+                        <FontAwesomeIcon icon={faPen} />
+                    </button>
+                    <button className={showContent ? '' : 'hidden'} onClick={() => {deleteSavedLocationHandler()}}>
+                        <FontAwesomeIcon icon={faTrashCan} />
+                    </button>
+                    <button className={`drop-down-button ${showContent ? 'drop-down-button-rotated' : ''}`} onClick={() => {setShowContent(!showContent)}}>
+                        <FontAwesomeIcon icon={faAngleDown} />
+                    </button>
+                </div>
             </div>
             <div className="saved-location-item-content-flex-container">
                 <div className={`saved-location-item-content-wrapper ${showContent ? 'saved-location-item-content-wrapper-active' : ''}`}>
@@ -35,7 +50,7 @@ const SavedLocationListItem = ({ location }) => {
                     </div>
                 </div>
                 <div className={`saved-location-map ${showContent ? 'saved-location-map-active' : ''}`}>
-                    <GoogleMapsSavedLocation savedLocationCoordinates={location.coordinates} />
+                    <SavedLocationMap savedLocationCoordinates={location.coordinates} />
                 </div>
             </div>
         </div>

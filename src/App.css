@@ -4,7 +4,7 @@
     --secondaryColor: #2196f3;
     --secondaryColorHover: #1f87db;
     --lightTextColor: #fefeff;
-
+    --darkTextColor: #170312;
   }
 
 html {
@@ -123,7 +123,7 @@ header nav .active {
     background-color: #fefeffdd;
     border-radius: 4px;
     border: none;
-    color: #170312;
+    color: var(--darkTextColor);
     padding: 20px 36px;
     text-align: left;
     width: 70%;
@@ -138,7 +138,7 @@ header nav .active {
 }
 
 .modal-container h3 {
-    color: #170312;
+    color: var(--darkTextColor);
     font-size: 1.3rem;
     font-weight: 600;
     line-height: 2.4;
@@ -319,12 +319,32 @@ p.modal-text {
     color: #aaa;
 }
 
+.saved-locations-page-heading {
+    color: var(--darkTextColor);
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
 .saved-location-item-content-wrapper {
     padding: 0;
     height: 0;
     opacity: 0;
     transition: all 0.15s;
     font-size: 0;
+}
+
+.saved-location-item-button-group button {
+    padding: 0 8px;
+    font-size: 1.3rem;
+    color: #999;
+    background: none;
+    border: none;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.saved-location-item-button-group button:hover {
+    color: var(--primaryColorHover);
 }
 
 .saved-location-item-content-wrapper-active {

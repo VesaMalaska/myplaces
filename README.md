@@ -20,7 +20,11 @@ The color theme for the app is created using the Coolors color theme generator. 
 
 ## Running the project
 
-You need to have the **Node.js** runtime in order to run the app in development mode on your local machine. Just run the the following script to launch the server:
+You need to have the **Node.js** runtime in order to run the app in development mode on your local machine. First install the needed dependencies with the following script.
+
+```npm install```
+
+After that just run the following script to launch the server:
 
 ```npm start```
 

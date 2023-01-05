@@ -1,11 +1,11 @@
+import React from 'react';
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import Geocode from "react-geocode";
 import { mapContainerStyle, mapInitialCenterCoordinates, mapInitialZoom } from '../utils/mapUtils';
 
-Geocode.setApiKey('AIzaSyAoH9-myuIXGNys5y5f3fFPvtYG_FL0WFo'); 
-/* process.env.REACT_APP_GOOGLE_API_KEY */
+Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
 Geocode.setRegion("fi");
 Geocode.setLocationType("ROOFTOP");
 

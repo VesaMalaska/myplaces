@@ -1,3 +1,4 @@
+import React from 'react';
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api';
 import { mapInitialZoom, savedLocationMapContainerStyle } from '../utils/mapUtils';
 
@@ -15,9 +16,8 @@ const SavedLocationMap = ({ savedLocationCoordinates }) => {
   
     return (
         <LoadScript
-          googleMapsApiKey='AIzaSyAoH9-myuIXGNys5y5f3fFPvtYG_FL0WFo'
+          googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}
         > 
-        {/*googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}*/}
   
           <GoogleMap
             mapContainerStyle={savedLocationMapContainerStyle}

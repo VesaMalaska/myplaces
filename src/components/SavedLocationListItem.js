@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import SavedLocationMap from './SavedLocationMap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faCircle, faTrashCan, faPen } from '@fortawesome/free-solid-svg-icons';
